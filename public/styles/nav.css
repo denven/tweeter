@@ -1,0 +1,36 @@
+/* 
+ * The appearance of the nav based on the following rules. The navbar should:\
+ * 1. Be fixed to the top. 
+ * 2. Be 120 pixels in height
+ * 3. Be full width of the viewport.
+ * 4. Have a z-index that means the nav will always be stacked on top
+ * 5. Have #4056A1 as its default background colour.
+ * 6. Have #FFFFF as its default font colour
+ * 7. The <span> within the <nav> has Bungee as it's default font-family
+ * 8. The inner content should remain 1.5ems away from all edges
+ */
+
+nav {
+  position: fixed;
+  height: 120px;
+  width: 100%;
+  z-index: 1024;  
+  background-color: #4056A1;
+  color: #FFFFF0;
+  padding: 1.5em;
+}
+
+/* TWEETER title */
+span.title {
+    font-family: 'Bungee', cursive;
+    float: left;
+    font-size: 60px;
+    font-weight: bold;
+    vertical-align: center;
+}
+
+/* write a new tweeter */
+span.post {
+    font-family: 'Source Sans Pro', sans-serif; 
+    float:right;
+}

@@ -1,0 +1,27 @@
+/*
+ * 1. The header should have a height of 400px and be 100% the width of it's parent container
+ * 2. The avatar should be centered vertically and horizontally (Use position)
+ * 3. The name should be centered below the avatar
+ * 4. The background should be a different colour than the nav and the body
+ * 5. The background-image should be a transparent pattern
+ */
+
+header.header {
+    height: 520px;
+    width: 100%;
+    text-align: center;
+    background-color: #D99822;
+    color: white;
+    font-family: 'Source Sans Pro', sans-serif;
+    /* background-image */
+}
+
+div.avatar {
+    position: relative;
+    top: 120px;
+}
+
+div.username{
+    position: relative;
+    top: 120px;
+}

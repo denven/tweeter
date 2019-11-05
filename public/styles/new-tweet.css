@@ -1,0 +1,24 @@
+section.new-tweet {
+    font-weight: bold;
+}
+
+textarea.underline {
+    outline: none;
+    border-bottom: 3px solid #000;
+    border-top: 0px;
+    border-left: 0px;
+    border-right: 0px;
+    width: 100%;
+    background-color: #f4f1ec;
+}
+
+input.button {
+    float: left;
+    color: white;
+    background-color: #4939A3
+}
+
+span.counter {
+    font-size: 30px;
+    float: right;
+}
