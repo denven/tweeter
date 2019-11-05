@@ -22,7 +22,7 @@ nav {
 
 /* TWEETER title */
 span.title {
-    font-family: 'Bungee', cursive;
+    font-family: 'Bungee', cursive, sans-serif;
     float: left;
     font-size: 60px;
     font-weight: bold;

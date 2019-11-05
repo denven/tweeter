@@ -19,9 +19,11 @@ header.header {
 div.avatar {
     position: relative;
     top: 120px;
+    /* transform: scale(0.625);  /* 400-120*2 = 160, scale = 160/256 */
 }
 
 div.username{
     position: relative;
     top: 120px;
+    font-size: 200%;
 }

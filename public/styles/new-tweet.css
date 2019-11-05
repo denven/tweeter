@@ -1,5 +1,5 @@
 section.new-tweet {
-    font-weight: bold;
+    font-weight: bold; 
 }
 
 textarea.underline {
@@ -15,10 +15,12 @@ textarea.underline {
 input.button {
     float: left;
     color: white;
+    font-family: 'Bungee', cursive, sans-serif;
     background-color: #4939A3
 }
 
 span.counter {
+    font-family: 'Bungee', cursive, sans-serif;
     font-size: 30px;
     float: right;
 }
