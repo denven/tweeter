@@ -18,12 +18,12 @@ nav {
   background-color: #4056A1;
   color: #FFFFF0;
   padding: 1.5em;
+  
 }
 
 /* TWEETER title */
-span.title {
+span.app_title {
     font-family: 'Bungee', cursive, sans-serif;
-    float: left;
     font-size: 60px;
     font-weight: bold;
     vertical-align: center;
@@ -31,6 +31,7 @@ span.title {
 
 /* write a new tweeter */
 span.post {
+    float: right;
     font-family: 'Source Sans Pro', sans-serif; 
-    float:right;
 }
+

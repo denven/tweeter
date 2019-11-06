@@ -1,5 +1,12 @@
+/*
+ * This css is for the posting new tweet elements.
+ */
+
 section.new-tweet {
-    font-weight: bold; 
+    font-weight: bold;
+    margin-bottom: 60px;
+    display: inline-block;
+    width: 100%;
 }
 
 textarea.underline {
@@ -14,6 +21,7 @@ textarea.underline {
 
 input.button {
     float: left;
+    font-weight: normal;
     color: white;
     font-family: 'Bungee', cursive, sans-serif;
     background-color: #4939A3
@@ -21,6 +29,7 @@ input.button {
 
 span.counter {
     font-family: 'Bungee', cursive, sans-serif;
+    font-weight: normal;
     font-size: 30px;
     float: right;
 }

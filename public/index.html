@@ -19,15 +19,15 @@
 
     <!-- External JS -->
     <script type="text/javascript" src="/vendor/jquery-2.2.3.min.js"></script>
-
     <!-- App JS -->
     <script type="text/javascript" src="/scripts/client.js"></script>
+    <script type="text/javascript" src="/scripts/composer-char-counterounter.js"></script>
   </head>
 
   <body>
     <!-- Top nav bar (fixed) -->
     <nav>
-      <span class="title">TWEETER</span>
+      <span class="app_title">TWEETER</span>
       <span class="post"><strong>Write</strong> a new tweeter</span>
     </nav>
 
@@ -46,22 +46,41 @@
     <!-- Page-specific (main) content here -->
     <main class="container">
 
+        <!-- styles for this section defined in nav.css -->
         <section class="new-tweet">
         <h2>Compose Tweet</h2>
         <form action="/tweets/" method="POST" enctype="application/x-www-form-urlencoded">
             <textarea class="underline" name="text" required placeholder="What are you humming about?"></textarea>
-            <input class="button" type="submit" value="TWEET">
-            <span class="counter">140</span>
+            <div>
+                <input class="button" type="submit" value="TWEET">
+                <span class="counter">140</span>
+            </div>            
         </form>
         </section>
+     
+        <!-- Tweet's posts display -->
+        <article class="tweets-container" id="tweets-container"> 
+            <header>
+                <div style="width: 50%;">
+                    <img class="author_avarta" src ="https://i.imgur.com/73hZDYK.png"> 
+                    <span class="author_name"">Author</span>
+                </div>
+                <div><span class="at_name">@Somebody</span></div>
+            </header>
+            <div>
+                <textarea class="tweet_content" readonly required 
+                placeholder="Hodor. Hodor hodor, hodor. Hodor hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor; hodor hodor hodor. Hodor. Hodor hodor; hodor hodor - hodor, hodor, hodor hodor. Hodor, hodor. Hodor. Hodor, hodor hodor hodor; hodor hodor; hodor hodor hodor! Hodor hodor HODOR! Hodor hodor... Hodor hodor hodor..."></textarea>
+            </div>
+            <footer>               
+                <div> <span class="post_date" >10 days ago</span> </div>
+            </footer>
+        </article>
 
-        <p>Hodor. Hodor hodor, hodor. Hodor hodor hodor hodor hodor. Hodor. 
-            Hodor! Hodor hodor, hodor; hodor hodor hodor. Hodor. Hodor hodor; 
-            hodor hodor - hodor, hodor, hodor hodor. Hodor, hodor. Hodor. Hodor,
-             hodor hodor hodor; hodor hodor; hodor hodor hodor! Hodor hodor HODOR! 
-             Hodor hodor... Hodor hodor hodor...
-            </p>
     </main>
 
   </body>
+  <script>
+
+  </script>
+
 </html>
