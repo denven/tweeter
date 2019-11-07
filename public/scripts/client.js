@@ -121,6 +121,40 @@ $(document).ready(() => {
 
   //to add it to the page so we can make sure it's got all the right elements, classes, etc.
   //$('#tweets-container').after($tweet);
+  //renderTweets(data);
+  // process posting new tweet by ajax
+  // $("form").on("submit", function(event) {
+  //   event.preventDefault();
+  //   console.log($(this).serialize());
+  // });
 
-  renderTweets(data);
+  // $button = $('#post-new-tweet');
+  // $button.on('click', function(event) {
+  //   event.preventDefault();
+  //   console.log($('.underline').serialize());
+
+  const $validatePosts = function() {
+    $("form").on("submit", function(event) {
+      event.preventDefault();
+      let contentLen = $(this).serialize().length - 5;
+      console.log($(this).serialize());
+      if (contentLen === 0) {
+        alert("You cannot post an empty tweet.");
+      }
+      if (contentLen > 140) {
+        alert("Your tweet is too long, make it shorter.");
+      }
+    });
+  };
+
+  const $loadTweets = function() {
+    console.log("get a request for tweets");
+    $.ajax("/tweets/", {method: 'GET'})
+      .then((tweets) => {
+        renderTweets(tweets);
+      });
+  };
+  $validatePosts();
+  $loadTweets();
+
 });
