@@ -1,28 +1,36 @@
 /*
- * Client-side JS logic goes here
- * jQuery is already loaded
- * Reminder: Use (and do all your DOM work in) jQuery's document ready function
- */
-
-// Test / driver code (temporary). Eventually will get this from the server.
-
-const tweetData = {
-  "user": {
-    "name": "Newton",
-    "avatars": "https://i.imgur.com/73hZDYK.png",
-    "handle": "@SirIsaac"
-  },
-  "content": {
-    "text": "If I have seen further it is by standing on the shoulders of giants"
-  },
-  "created_at": 1461116232227
-};
-
-
-/*
  * define a function createTweetElement that takes in a tweet object and is responsible for
  * returning a tweet <article> element containing the entire HTML structure of the tweet.
  */
+const createTweetElement2 = function(tweet) {
+  console.log("------------------create tweet one time------------------");
+  let $tweet = $('<article>').addClass('tweets-container');
+  let passDays = (new Date() - tweet.created_at) / 1000 / 60 / 60 / 24;  // ms-->day
+  passDays = Math.round(passDays);
+
+  $tweet.append(`
+            <header>
+                <div style="width: 50%;">
+                    <img class="author_avarta" src =${tweet["user"]["avatars"]}>
+                    <span class="author_name"">${tweet.user.name}</span>
+                </div>
+                <div><span class="at_name">${tweet.user.handle}</span></div>
+            </header>
+            <div>
+                <textarea class="tweet_content" readonly required>${tweet.content.text}</textarea>
+            </div>
+            <footer>
+                <div> <span class="post_date" >${passDays} days ago</span> </div>
+            </footer>
+            `);
+
+  return $tweet;
+};
+
+// const countTweetNumber() =  function () {
+
+// }
+
 const createTweetElement = function(tweetData) {
 
   let passDays = (new Date() - tweetData.created_at) / 1000 / 60 / 60 / 24;  // ms-->day
@@ -48,113 +56,137 @@ const createTweetElement = function(tweetData) {
         `;
 };
 
-/* Fake data taken from initial-tweets.json */
-const data = [
-  {
-    "user": {
-      "name": "Newton",
-      "avatars": "https://i.imgur.com/73hZDYK.png"
-      ,
-      "handle": "@SirIsaac"
-    },
-    "content": {
-      "text": "If I have seen further it is by standing on the shoulders of giants"
-    },
-    "created_at": 1461116232227
-  },
-  {
-    "user": {
-      "name": "Descartes",
-      "avatars": "https://i.imgur.com/nlhLi3I.png",
-      "handle": "@rd" },
-    "content": {
-      "text": "Je pense , donc je suis"
-    },
-    "created_at": 1461113959088
-  }
-];
+// This is the Oldest tweet also the template tweet to display.
+// const renderOldestTweet = function(param) {
 
-const renderTweets = function(tweets) {
+// };
+
+
+//put all the history tweets reversely
+//and this function should be called when page loaded
+const renderHistoryTweets = function(tweets) {
   // loops through tweets
+  console.log("render History tweets", tweets);
   if (Array.isArray(tweets)) {
-    tweets.forEach((article) => {
-      let tweetArticle = createTweetElement2(article);
-      $('.container').append(tweetArticle);
-      //$('.tweets-container').after(tweetArticle);
-    });
+
+    // add each tweet before the template tweet
+    // each time we add the latest in the array
+    // so the latest will put on top
+    for (let i = tweets.length - 1; i >= 0; i--) {
+      let tweetArticle = createTweetElement2(tweets[i]);
+      $('#tweets-container').before(tweetArticle);
+    }
   }
-  console.log("add completed");
+  console.log("add history tweets completed: ", tweets.length);
 };
 
-const createTweetElement2 = function(tweet) {
-  let $tweet = $('<article>').addClass('tweets-container');
-  let passDays = (new Date() - tweet.created_at) / 1000 / 60 / 60 / 24;  // ms-->day
-  passDays = Math.round(passDays);
-
-  $tweet.append(`
-            <header>
-                <div style="width: 50%;">
-                    <img class="author_avarta" src =${tweet.user.avatars}>
-                    <span class="author_name"">${tweet.user.name}</span>
-                </div>
-                <div><span class="at_name">${tweet.user.handle}</span></div>
-            </header>
-            <div>
-                <textarea class="tweet_content" readonly required>${tweet.content.text}</textarea>
-            </div>
-            <footer>
-                <div> <span class="post_date" >${passDays} days ago</span> </div>
-            </footer>
-            `);
-
-  return $tweet;
+// put the latest tweet just below the tweet-composer section
+const renderLatestTweet = function(tweets) {
+  let tweetArticle = createTweetElement2(tweets[tweets.length - 1]);
+  $('#tweet-composer').after(tweetArticle);
+  console.log("latest tweet:", tweets[tweets.length - 1]);
 };
 
- 
+
 $(document).ready(() => {
 
-  //const $tweet = createTweetElement(tweetData);
-  console.log("get the html tags");
+  // const $loadTweets = function() {
+  //   console.log("get a request for tweets");
+  //   $.ajax("/tweets/", {method: 'GET'})
+  //     .then((tweets) => {
+  //       renderTweets(tweets);
+  //     });
+  // };
 
-  //Test / driver code (temporary)
-  //console.log($tweet); // to see what it looks like
+  $('#new-button').on('click', function(event) {
+    event.preventDefault();
+    // let $tweetComposer = $("#tweet-composer");
+    // if ($tweetComposer.is(":hidden")) {
+    //   $tweetComposer.show();
+    // } else {
+    //   $tweetComposer.hide();
+    // }
+    $("#tweet-composer").slideToggle();
 
-  //to add it to the page so we can make sure it's got all the right elements, classes, etc.
-  //$('#tweets-container').after($tweet);
-  //renderTweets(data);
-  // process posting new tweet by ajax
-  // $("form").on("submit", function(event) {
-  //   event.preventDefault();
-  //   console.log($(this).serialize());
+    
+  });
+
+  // $('#toogle-composer').toggle(
+  //   function(){$("#tweet-composer").hide();},
+  //   function(){$("#tweet-composer").show();}
   // });
 
-  // $button = $('#post-new-tweet');
-  // $button.on('click', function(event) {
-  //   event.preventDefault();
-  //   console.log($('.underline').serialize());
+
+  $("#tweet-form").validate({
+    rules: {
+      text: {
+        required: true,
+        minlength: 1,
+        maxlength: 140
+      }
+    },
+    message: {
+      text: {
+        maxlength: "too short or long tweet"
+      }
+    },
+    submitHandler: function(form) {
+      form.submit();
+    }
+  });
 
   const $validatePosts = function() {
     $("form").on("submit", function(event) {
       event.preventDefault();
-      let contentLen = $(this).serialize().length - 5;
-      console.log($(this).serialize());
-      if (contentLen === 0) {
-        alert("You cannot post an empty tweet.");
+      let formData = $(this).serialize();
+      if (formData.length - 5 === 0) {
+        return;
       }
-      if (contentLen > 140) {
-        alert("Your tweet is too long, make it shorter.");
+      if (formData.length - 5 > 140) {
+        //$('form').html("Your tweet is too long, make it shorter.");
+        return;
       }
+      // https://stackoverflow.com/questions/36173871/jquery-validation-red-border-not-showing-immediately
+      // https://www.codeproject.com/Questions/874229/Jquery-validate-change-background-color
+
+      // $("form").validate({
+      //   errorClass: "my-error-class",
+      //   validClass: "my-valid-class"
+      // });
+
+      // .my-error-class {
+      //     color:#FF0000;  /* red */
+      // }
+      // .my-valid-class {
+      //     color:#00CC00; /* green */
+      // }
+
+      $.ajax({
+        url: '/tweets/',
+        type: "POST",
+        data: formData,
+        success: function(data) {
+          getAlltweets(renderLatestTweet);
+        }
+      });
     });
   };
 
-  const $loadTweets = function() {
-    console.log("get a request for tweets");
-    $.ajax("/tweets/", {method: 'GET'})
-      .then((tweets) => {
-        renderTweets(tweets);
-      });
+  const getAlltweets = function(callback) {
+    $.ajax({
+      url: '/tweets/',
+      type: 'GET',
+      error: function() {
+        console.log("request error");
+      },
+      dataType: 'json',
+      success: function(data) {
+        callback(data);
+      }
+    });
   };
+  //$loadTweets();
+  getAlltweets(renderHistoryTweets);
+  $("#tweet-composer").hide();
   $validatePosts();
-  $loadTweets();
-
 });

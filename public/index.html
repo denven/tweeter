@@ -19,6 +19,8 @@
 
     <!-- External JS -->
     <script type="text/javascript" src="/vendor/jquery-2.2.3.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+
     <!-- App JS -->
     <script type="text/javascript" src="/scripts/client.js"></script>
     <script type="text/javascript" src="/scripts/composer-char-counterounter.js"></script>
@@ -27,8 +29,17 @@
   <body>
     <!-- Top nav bar (fixed) -->
     <nav>
-      <span class="app_title">TWEETER</span>
-      <span class="post"><strong>Write</strong> a new tweeter</span>
+        <div>
+            <div class="left_title">
+                 <span class="app_title">TWEETER</span>
+            </div>
+           
+            <div class="right_title" id="new-button">
+                <div class="new_post"><strong>Write</strong> a new tweeter</div>
+                <div class="toogle_composer"><button class="toogle_composer" id="toogle-composer">︾</button></div>                
+            </div>
+        </div>
+
     </nav>
 
     <!-- Add avatar and name in header  -->
@@ -47,12 +58,12 @@
     <main class="container">
 
         <!-- styles for this section defined in nav.css -->
-        <section class="new-tweet">
-        <h2>Compose Tweet</h2>
-        <form action="/tweets/" method="POST" enctype="application/x-www-form-urlencoded">
-            <textarea class="underline" name="text" required placeholder="What are you humming about?"></textarea>
+        <section class="new-tweet" id="tweet-composer">
+        <form id="tweet-form" action="/tweets/" method="POST" enctype="application/x-www-form-urlencoded">
+            <label for="text" name="error-msg"></label>
+            <textarea class="tweet-input" name="text" placeholder="What are you humming about?"></textarea>
             <div>
-                <input class="button" type="submit" value="TWEET">
+                <input class="button" id="post-new-tweet" type="submit" value="TWEET">
                 <span class="counter">140</span>
             </div>            
         </form>
