@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!-- Supoort different devices (be responsive) -->
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0' />
+
     <!-- Meta Information -->
     <title>Tweeter - Home Page</title>
 
@@ -45,7 +48,6 @@
     </nav>
 
     <!-- Add avatar and name in header  -->
-    <!-- div class="transparent_nav"></div-->
     <header class="header">
         <div class="avatar">
             <img src="/images/profile-hex.png"> 
@@ -58,10 +60,11 @@
 
     <!-- Page-specific (main) content here -->
     <main class="container">
-        <!-- styles for this section defined in nav.css -->
+
+        <!-- compose new tweet container -->
         <section class="new-tweet" id="tweet-composer">
         <form id="tweet-form" action="/tweets/" method="POST" enctype="application/x-www-form-urlencoded">
-            <textarea class="tweet-input" id="text" name="text" placeholder="What are you humming about?"></textarea>
+            <textarea class="tweet-input" id="tweet-input" name="text" placeholder="What are you humming about?"></textarea>
             <div>
                 <input class="button" id="post-new-tweet" type="submit" value="TWEET">
                 <span class="counter">140</span>
@@ -69,12 +72,12 @@
         </form>
         </section>
      
-        <!-- Tweet's posts display -->
+        <!-- Tweets' posts display container -->
         <article class="tweets-container" id="tweets-container"> 
             <header>
                 <div style="width: 50%;">
                     <img class="author_avarta" src ="https://i.imgur.com/73hZDYK.png"> 
-                    <span class="author_name"">Author</span>
+                    <span class="author_name">Author</span>
                 </div>
                 <div><span class="at_name">@Somebody</span></div>
             </header>

@@ -9,27 +9,23 @@ const createTweetElement2 = function(tweet) {
   passDays = Math.round(passDays);
 
   $tweet.append(`
-            <header>
-                <div style="width: 50%;">
-                    <img class="author_avarta" src =${tweet["user"]["avatars"]}>
-                    <span class="author_name"">${tweet.user.name}</span>
-                </div>
-                <div><span class="at_name">${tweet.user.handle}</span></div>
-            </header>
-            <div>
-                <textarea class="tweet_content" readonly required>${tweet.content.text}</textarea>
-            </div>
-            <footer>
-                <div> <span class="post_date" >${passDays} days ago</span> </div>
-            </footer>
-            `);
+      <header>
+          <div style="width: 50%;">
+              <img class="author_avarta" src =${tweet["user"]["avatars"]}>
+              <span class="author_name"">${tweet.user.name}</span>
+          </div>
+          <div><span class="at_name">${tweet.user.handle}</span></div>
+      </header>
+      <div>
+          <textarea class="tweet_content" readonly required>${tweet.content.text}</textarea>
+      </div>
+      <footer>
+          <div> <span class="post_date" >${passDays} days ago</span> </div>
+      </footer>
+      `);
 
   return $tweet;
 };
-
-// const countTweetNumber() =  function () {
-
-// }
 
 const createTweetElement = function(tweetData) {
 
@@ -38,33 +34,28 @@ const createTweetElement = function(tweetData) {
   console.log(passDays);
 
   return `
-          <article class="tweets-container" id="tweets-container"> 
-            <header>
-                <div style="width: 50%;">
-                    <img class="author_avarta" src =${tweetData.user.avatars}> 
-                    <span class="author_name"">${tweetData.user.name}</span>
-                </div>
-                <div><span class="at_name">${tweetData.user.handle}</span></div>
-            </header>
-            <div>
-                <textarea class="tweet_content" readonly required>${tweetData.content.text}</textarea>
-            </div>
-            <footer>               
-                <div> <span class="post_date" >${passDays} days ago</span> </div>
-            </footer>
-        </article>
-        `;
+        <article class="tweets-container" id="tweets-container"> 
+          <header>
+              <div style="width: 50%;">
+                  <img class="author_avarta" src =${tweetData.user.avatars}> 
+                  <span class="author_name"">${tweetData.user.name}</span>
+              </div>
+              <div><span class="at_name">${tweetData.user.handle}</span></div>
+          </header>
+          <div>
+              <textarea class="tweet_content" readonly required>${tweetData.content.text}</textarea>
+          </div>
+          <footer>               
+              <div> <span class="post_date" >${passDays} days ago</span> </div>
+          </footer>
+      </article>
+      `;
 };
-
-// This is the Oldest tweet also the template tweet to display.
-// const renderOldestTweet = function(param) {
-
-// };
 
 
 //put all the history tweets reversely
 //and this function should be called when page loaded
-const renderHistoryTweets = function(tweets) {
+const getHistoryTweets = function(tweets) {
   // loops through tweets
   console.log("render History tweets", tweets);
   if (Array.isArray(tweets)) {
@@ -81,7 +72,7 @@ const renderHistoryTweets = function(tweets) {
 };
 
 // put the latest tweet just below the tweet-composer section
-const renderLatestTweet = function(tweets) {
+const getLatestTweet = function(tweets) {
   let tweetArticle = createTweetElement2(tweets[tweets.length - 1]);
   $('#tweet-composer').after(tweetArticle);
   console.log("latest tweet:", tweets[tweets.length - 1]);
@@ -90,92 +81,100 @@ const renderLatestTweet = function(tweets) {
 
 $(document).ready(() => {
 
-  // const $loadTweets = function() {
-  //   console.log("get a request for tweets");
-  //   $.ajax("/tweets/", {method: 'GET'})
-  //     .then((tweets) => {
-  //       renderTweets(tweets);
-  //     });
-  // };
-
+  // Toggle the tweet composer container once user clicks the top-right
+  // "write new tweet" text button.
   $('#new-button').on('click', function(event) {
     event.preventDefault();
-    // let $tweetComposer = $("#tweet-composer");
-    // if ($tweetComposer.is(":hidden")) {
-    //   $tweetComposer.show();
-    // } else {
-    //   $tweetComposer.hide();
-    // }
+    $(document).scrollTop(0);
     $("#tweet-composer").slideToggle();
   });
 
-  // $('#toogle-composer').toggle(
-  //   function(){$("#tweet-composer").hide();},
-  //   function(){$("#tweet-composer").show();}
-  // });
+  const $clearInputArea = function() {
+    $('#tweet-input').val('');
+  };
 
-  $('#tweet-form').submit(function(e) {
-    e.preventDefault();
-    let textLen = $('textarea').val().length;
- 
-    $(".error-msg").remove();
- 
-    if (textLen < 1) {
-      $('#text').before('<span class="error-msg"><i class="fas fa-exclamation-triangle"></i>This field is required.<i class="fas fa-exclamation-triangle"></i></span>');
-      $(".error-msg").slideToggle(3000);
-
-    }
-    if (textLen > 140) {
-      $('#text').before('<span class="error-msg">&#9888; Too long, please make it in 140 characters. &#9888;</span>');
-      $(".error-msg").slideToggle(3000);
-    }
-    
-  });
+  const $submitNewTweet = function() {
+    $.ajax({
+      url: '/tweets/',
+      type: "POST",
+      data: $('form').serialize(),
+      success: function(data) {
+        renderTweetArticles(getLatestTweet);
+        $clearInputArea(); //clear textarea
+      }
+    });
+  };
 
 
-  $("#scroll-button").hide();
+
+  /**
+   * New Tweet content length validation.   *
+   */
+  const $validatePosts = function() {
+    $('#tweet-form').submit(function(event) {
+      event.preventDefault();
+      let inputLen = $('textarea').val().length;
+      
+      // remove the hidden <span> before each time runs,
+      // as it will be created when showing the error message
+      $(".error-msg").remove();
+  
+      // when validation fails, (no input or input string length is greater than 140)
+      // error message string will be shown in a created span.
+      // we put the added span elements ahead of the input textarea.
+      if (inputLen < 1) {
+        $('#text').before(`
+            <span class="error-msg">
+              <i class="fas fa-exclamation-triangle"></i>This field is required.<i class="fas fa-exclamation-triangle"></i>
+            </span>
+        `);
+        $(".error-msg").slideToggle(3000);  // display 3s then hide
+        return;
+      }
+      
+      if (inputLen > 140) {
+        $('#text').before(`
+            <span class="error-msg">
+              <i class="fas fa-exclamation-triangle"></i>Too long, please make it in 140 characters.<i class="fas fa-exclamation-triangle"></i>
+            </span>
+          `);
+        $(".error-msg").slideToggle(3000);
+        return;
+      }
+      
+      $submitNewTweet();   // validated user input wil be submitted
+    });
+  };
+
+
+  /*
+   * The "scroll-button" is used to put document on top of the window.
+   * It's hidden once the page loaded, then:
+   *     - show when user scrolls down
+   *     - hide when page goes top by scrolling up or clicking this button.
+   */
+  $("#scroll-button").hide();     // hide when page loads
 
   $(document).scroll(function(event) {
     event.preventDefault();
     let top = $(window).scrollTop();
+
+    // show button only when the top of scroll bar down is below the header
     if (top > 400) {
       $("#scroll-button").show();
     } else {
       $("#scroll-button").hide();
     }
-
   });
 
+  // let document go top when user clicked the button
   $("#scroll-button").on('click', function(event) {
     event.preventDefault();
     $(document).scrollTop(0);
-    // $("#scroll-button").();
   });
 
-  const $validatePosts = function() {
-    $("form").on("submit", function(event) {
-      event.preventDefault();
-      let formData = $(this).serialize();
-      if (formData.length - 5 === 0) {
-        return;
-      }
-      if (formData.length - 5 > 140) {
-        //$('form').html("Your tweet is too long, make it shorter.");
-        return;
-      }
-
-      $.ajax({
-        url: '/tweets/',
-        type: "POST",
-        data: formData,
-        success: function(data) {
-          getAlltweets(renderLatestTweet);
-        }
-      });
-    });
-  };
-
-  const getAlltweets = function(callback) {
+  // display
+  const renderTweetArticles = function(callback) {
     $.ajax({
       url: '/tweets/',
       type: 'GET',
@@ -188,8 +187,9 @@ $(document).ready(() => {
       }
     });
   };
-  //$loadTweets();
-  getAlltweets(renderHistoryTweets);
-  $("#tweet-composer").hide();
-  $validatePosts();
+
+  $("#tweet-composer").hide();            // the tweet-composer board is hide when page loads
+  renderTweetArticles(getHistoryTweets);  // load history tweets saved in server files
+  $validatePosts();                       // check user new tweet when the posts
+
 });

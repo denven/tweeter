@@ -2,14 +2,15 @@
  * This css is for the posting new tweet elements.
  */
 
+/* tweet-composer */
 section.new-tweet {
     font-weight: bold;
-    margin-top: 50px;
     margin-bottom: 10px;
     display: inline-block;
-    width: 100%;
+    width: 90%;
 }
 
+/* User Input TextArea */
 textarea.tweet-input {
     outline: none;
     border-bottom: 3px solid #000;
@@ -20,6 +21,7 @@ textarea.tweet-input {
     background-color: #f4f1ec;
 }
 
+/* TWEET BUTTON */
 input.button {
     float: left;
     font-weight: normal;
@@ -31,8 +33,8 @@ input.button {
 span.counter {
     font-family: 'Bungee', cursive, sans-serif;
     font-weight: normal;
-    font-size: 30px;
-    float: right;
+    font-size: 1.25em;
+    float: right;    
 }
 
 span.error-msg {
@@ -43,14 +45,13 @@ span.error-msg {
     text-align: left;
     font-size: bold;
     padding: 5px;
-    margin-bottom: 20px;;
+    margin-bottom: 20px;
 }
 
 
-
 span.round_button {
-  height: 60px;
-  width: 60px;
+  height: 2.5em;
+  width: 2.5em;
   color: white;  
   text-align: center;
   background-color: red;

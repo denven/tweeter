@@ -1,7 +1,6 @@
 $(document).ready(() => {
     
   // --- our code goes here ---
-  console.log("document ready!");
   let counter = 0;
  
   $('textarea').on("keydown", function() {

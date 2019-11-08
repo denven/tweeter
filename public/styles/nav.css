@@ -15,21 +15,19 @@ nav {
   height: 120px;
   width: 100%;
   z-index: 1024;  
-  background-color: #4056A1;
-  color: #FFFFF0;
   padding: 1.5em;
-  
 }
 
 div.left_title {
-    width: 50%;
-    float:left;
+    width: 30%;
+    float: left;
 }
 
 /* TWEETER title */
 span.app_title {
     font-family: 'Bungee', cursive, sans-serif;
-    font-size: 60px;
+    font-size: 2.5em;
+    color: #FFFFF0;
     font-weight: bold;
 }
 
@@ -38,6 +36,7 @@ div.right_title {
     /* width: fit-content; 
     height: fit-content; */
     /* display: inline-block; */
+    color: #FFFFF0;
     float: right;
 }
 
