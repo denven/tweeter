@@ -107,8 +107,6 @@ $(document).ready(() => {
     //   $tweetComposer.hide();
     // }
     $("#tweet-composer").slideToggle();
-
-    
   });
 
   // $('#toogle-composer').toggle(
@@ -116,23 +114,42 @@ $(document).ready(() => {
   //   function(){$("#tweet-composer").show();}
   // });
 
+  $('#tweet-form').submit(function(e) {
+    e.preventDefault();
+    let textLen = $('textarea').val().length;
+ 
+    $(".error-msg").remove();
+ 
+    if (textLen < 1) {
+      $('#text').before('<span class="error-msg"><i class="fas fa-exclamation-triangle"></i>This field is required.<i class="fas fa-exclamation-triangle"></i></span>');
+      $(".error-msg").slideToggle(3000);
 
-  $("#tweet-form").validate({
-    rules: {
-      text: {
-        required: true,
-        minlength: 1,
-        maxlength: 140
-      }
-    },
-    message: {
-      text: {
-        maxlength: "too short or long tweet"
-      }
-    },
-    submitHandler: function(form) {
-      form.submit();
     }
+    if (textLen > 140) {
+      $('#text').before('<span class="error-msg">&#9888; Too long, please make it in 140 characters. &#9888;</span>');
+      $(".error-msg").slideToggle(3000);
+    }
+    
+  });
+
+
+  $("#scroll-button").hide();
+
+  $(document).scroll(function(event) {
+    event.preventDefault();
+    let top = $(window).scrollTop();
+    if (top > 400) {
+      $("#scroll-button").show();
+    } else {
+      $("#scroll-button").hide();
+    }
+
+  });
+
+  $("#scroll-button").on('click', function(event) {
+    event.preventDefault();
+    $(document).scrollTop(0);
+    // $("#scroll-button").();
   });
 
   const $validatePosts = function() {
@@ -146,20 +163,6 @@ $(document).ready(() => {
         //$('form').html("Your tweet is too long, make it shorter.");
         return;
       }
-      // https://stackoverflow.com/questions/36173871/jquery-validation-red-border-not-showing-immediately
-      // https://www.codeproject.com/Questions/874229/Jquery-validate-change-background-color
-
-      // $("form").validate({
-      //   errorClass: "my-error-class",
-      //   validClass: "my-valid-class"
-      // });
-
-      // .my-error-class {
-      //     color:#FF0000;  /* red */
-      // }
-      // .my-valid-class {
-      //     color:#00CC00; /* green */
-      // }
 
       $.ajax({
         url: '/tweets/',

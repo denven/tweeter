@@ -21,17 +21,51 @@ nav {
   
 }
 
+div.left_title {
+    width: 50%;
+    float:left;
+}
+
 /* TWEETER title */
 span.app_title {
     font-family: 'Bungee', cursive, sans-serif;
     font-size: 60px;
     font-weight: bold;
-    vertical-align: center;
+}
+
+/* top-right corner nav container */
+div.right_title {
+    /* width: fit-content; 
+    height: fit-content; */
+    /* display: inline-block; */
+    float: right;
 }
 
 /* write a new tweeter */
-span.post {
-    float: right;
-    font-family: 'Source Sans Pro', sans-serif; 
+div.new_post {
+    text-align: right;
+    /* height: fit-content;
+    width: fit-content; */
+    font-family: 'Source Sans Pro', sans-serif;
 }
 
+div.toogle_composer {
+    text-align: center; 
+    height: 50px;
+    position:relative;
+    -webkit-animation: webmove 1.5s infinite;
+}
+
+button.toogle_composer {
+    background-color: transparent;
+    border:0px; 
+    color: yellow;
+    margin: 0px; 
+    border-color: transparent;
+    outline: none;
+}
+
+@-webkit-keyframes webmove{ 
+	from {top:25px;}
+	to {top: 0px;}
+}

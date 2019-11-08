@@ -34,3 +34,29 @@ span.counter {
     font-size: 30px;
     float: right;
 }
+
+span.error-msg {
+    color: red;
+    border: 2px solid red;
+    display: block;
+    font-weight: normal;
+    text-align: left;
+    font-size: bold;
+    padding: 5px;
+    margin-bottom: 20px;;
+}
+
+
+
+span.round_button {
+  height: 60px;
+  width: 60px;
+  color: white;  
+  text-align: center;
+  background-color: red;
+  border-radius: 50%;
+  display: inline-block;
+  position: fixed;
+  right: 0%;
+  bottom: 2%;
+}
