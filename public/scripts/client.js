@@ -2,11 +2,51 @@
  * define a function createTweetElement that takes in a tweet object and is responsible for
  * returning a tweet <article> element containing the entire HTML structure of the tweet.
  */
-const createTweetElement2 = function(tweet) {
-  console.log("------------------create tweet one time------------------");
+const generatePastTime = function(milliSec) {
+
+  let date = new Date(milliSec);
+  let dateDiffSecs = Math.floor((new Date() - milliSec) / 1000) + 1;
+  let passDays = Math.floor((dateDiffSecs) / 60 / 60 / 24);
+
+  let passSecs = Math.floor(dateDiffSecs % 60);
+  let passMins = Math.floor((dateDiffSecs / 60) % 60);
+  let passHrs = Math.floor((dateDiffSecs / 3600) % 24);
+  
+  let timeDiff = ((passHrs > 0) ? passHrs + "h " : '') +
+                 ((passMins > 0) ? passMins + "m " : '') +
+                 ((passSecs > 0) ? passSecs + "s " : '') +
+                  'ago';
+
+  if (Math.floor(passDays) > 0) {
+
+    let year = date.getFullYear();
+    let month = date.getMonth() + 1;
+    let day = date.getDate();
+
+    month = (month < 10) ? ("0" + month) : month;
+
+    day = (day < 10) ? ("0" + day) : day;
+    date = month + '/' + day + '/' + year;
+    date = "Posted on " + date + ", " + Math.floor(passDays) + " days ago.";
+
+  } else {
+    // let hour = date.getHours();
+    // let minutes = date.getMinutes();
+    // let seconds = date.getSeconds();
+
+    date = 'Posted ' + timeDiff;
+  }
+
+  return date;
+};
+
+
+const createTweetElement21 = function(tweet) {
+  
   let $tweet = $('<article>').addClass('tweets-container');
   let passDays = (new Date() - tweet.created_at) / 1000 / 60 / 60 / 24;  // ms-->day
   passDays = Math.round(passDays);
+  const dateInfo = generatePastTime(tweet.created_at);
 
   $tweet.append(`
       <header>
@@ -20,36 +60,54 @@ const createTweetElement2 = function(tweet) {
           <textarea class="tweet_content" readonly required>${tweet.content.text}</textarea>
       </div>
       <footer>
-          <div> <span class="post_date" >${passDays} days ago</span> </div>
+          <div> <span class="post_date" >${dateInfo}</span>
+          <span class="friend_action"><i class="fas fa-flag"></i> <i class="fas fa-retweet"></i> <i class="fas fa-heart"></i> </div>
       </footer>
       `);
 
   return $tweet;
 };
 
-const createTweetElement = function(tweetData) {
 
-  let passDays = (new Date() - tweetData.created_at) / 1000 / 60 / 60 / 24;  // ms-->day
+const createTweetElement2 = function(tweet) {
+
+  let passDays = (new Date() - tweet.created_at) / 1000 / 60 / 60 / 24;  // ms-->day
   passDays = Math.round(passDays);
-  console.log(passDays);
+  const dateInfo = generatePastTime(tweet.created_at);
 
   return `
-        <article class="tweets-container" id="tweets-container"> 
-          <header>
-              <div style="width: 50%;">
-                  <img class="author_avarta" src =${tweetData.user.avatars}> 
-                  <span class="author_name"">${tweetData.user.name}</span>
-              </div>
-              <div><span class="at_name">${tweetData.user.handle}</span></div>
-          </header>
-          <div>
-              <textarea class="tweet_content" readonly required>${tweetData.content.text}</textarea>
+    <article class="tweets-container" id="tweets-container"> 
+        <header>
+          <div style="width: 50%;">
+              <img class="author_avarta" src =${tweet["user"]["avatars"]}>
+              <span class="author_name"">${tweet.user.name}</span>
           </div>
-          <footer>               
-              <div> <span class="post_date" >${passDays} days ago</span> </div>
-          </footer>
-      </article>
+          <div><span class="at_name">${tweet.user.handle}</span></div>
+      </header>
+      <div>
+          <textarea class="tweet_content" readonly required>${tweet.content.text}</textarea>
+      </div>
+      <footer>
+          <div> <span class="post_date" >${dateInfo}</span>
+          <span class="friend_action"><i class="fas fa-flag"></i> <i class="fas fa-retweet"></i> <i class="fas fa-heart"></i> </div>
+      </footer>
+    </article>
       `;
+  //         <article class="tweets-container" id="tweets-container">
+  //     <header>
+  //         <div style="width: 50%;">
+  //             <img class="author_avarta" src =${tweet.user.avatars}>
+  //             <span class="author_name"">${tweet.user.name}</span>
+  //         </div>
+  //         <div><span class="at_name">${tweet.user.handle}</span></div>
+  //     </header>
+  //     <div>
+  //         <textarea class="tweet_content" readonly required>${tweet.content.text}</textarea>
+  //     </div>
+  //     <footer>
+  //         <div> <span class="post_date" >10 days ago</span> </div>
+  //     </footer>
+  // </article>
 };
 
 
@@ -57,25 +115,26 @@ const createTweetElement = function(tweetData) {
 //and this function should be called when page loaded
 const getHistoryTweets = function(tweets) {
   // loops through tweets
-  console.log("render History tweets", tweets);
   if (Array.isArray(tweets)) {
 
     // add each tweet before the template tweet
     // each time we add the latest in the array
     // so the latest will put on top
-    for (let i = tweets.length - 1; i >= 0; i--) {
+    // for (let i = tweets.length - 1; i >= 0; i--) {
+    //   let tweetArticle = createTweetElement2(tweets[i]);
+    //   $('#tweets-container').before(tweetArticle);
+    // }
+    for (let i = 0; i < tweets.length; i++) {
       let tweetArticle = createTweetElement2(tweets[i]);
-      $('#tweets-container').before(tweetArticle);
+      $('#tweet-composer').after(tweetArticle);
     }
   }
-  console.log("add history tweets completed: ", tweets.length);
 };
 
 // put the latest tweet just below the tweet-composer section
 const getLatestTweet = function(tweets) {
   let tweetArticle = createTweetElement2(tweets[tweets.length - 1]);
   $('#tweet-composer').after(tweetArticle);
-  console.log("latest tweet:", tweets[tweets.length - 1]);
 };
 
 
@@ -87,6 +146,16 @@ $(document).ready(() => {
     event.preventDefault();
     $(document).scrollTop(0);
     $("#tweet-composer").slideToggle();
+  });
+
+
+  $(window).resize(function() {
+    const $winHeight = $(window).height();
+    if ($winHeight < 500) {
+      $('#header').slideToggle();
+    } else {
+      $('#header').show();
+    }
   });
 
   const $clearInputArea = function() {
@@ -105,8 +174,6 @@ $(document).ready(() => {
     });
   };
 
-
-
   /**
    * New Tweet content length validation.   *
    */
@@ -123,9 +190,11 @@ $(document).ready(() => {
       // error message string will be shown in a created span.
       // we put the added span elements ahead of the input textarea.
       if (inputLen < 1) {
-        $('#text').before(`
+        $('#tweet-input').before(`
             <span class="error-msg">
-              <i class="fas fa-exclamation-triangle"></i>This field is required.<i class="fas fa-exclamation-triangle"></i>
+              <i class="fas fa-exclamation-triangle">
+              </i>This field is required.
+              <i class="fas fa-exclamation-triangle"></i>
             </span>
         `);
         $(".error-msg").slideToggle(3000);  // display 3s then hide
@@ -133,7 +202,7 @@ $(document).ready(() => {
       }
       
       if (inputLen > 140) {
-        $('#text').before(`
+        $('#tweet-input').before(`
             <span class="error-msg">
               <i class="fas fa-exclamation-triangle"></i>Too long, please make it in 140 characters.<i class="fas fa-exclamation-triangle"></i>
             </span>
@@ -160,7 +229,7 @@ $(document).ready(() => {
     let top = $(window).scrollTop();
 
     // show button only when the top of scroll bar down is below the header
-    if (top > 400) {
+    if (top > 0) {
       $("#scroll-button").show();
     } else {
       $("#scroll-button").hide();

@@ -40,26 +40,25 @@
            
             <div class="right_title" id="new-button">
                 <div class="new_post"><strong>Write</strong> a new tweeter</div>
-                <!--i class="far fa-chevron-double-down"></i-->
-                <div class="toogle_composer"><button class="toogle_composer" id="toogle-composer">︾</button></div>                
+                <div class="toogle_composer">
+                    <button class="toogle_composer" id="toogle-composer"><i class="fas fa-angle-double-down"></i>
+                    </button></div>                
             </div>
         </div>
-
     </nav>
 
     <!-- Add avatar and name in header  -->
-    <header class="header">
+    <header class="header" id="header">
         <div class="avatar">
-            <img src="/images/profile-hex.png"> 
+            <img class="auto-size" src="/images/profile-hex.png"> 
         </div>
-        </br>
         <div class="username">
             <span style="font-weight: bold;">Amy</span><span> Marsell</span>
         </div>
     </header>
 
     <!-- Page-specific (main) content here -->
-    <main class="container">
+    <main class="container" id="main-container">
 
         <!-- compose new tweet container -->
         <section class="new-tweet" id="tweet-composer">
@@ -73,7 +72,7 @@
         </section>
      
         <!-- Tweets' posts display container -->
-        <article class="tweets-container" id="tweets-container"> 
+        <!-- <article class="tweets-container" id="tweets-container"> 
             <header>
                 <div style="width: 50%;">
                     <img class="author_avarta" src ="https://i.imgur.com/73hZDYK.png"> 
@@ -88,13 +87,12 @@
             <footer>               
                 <div> <span class="post_date" >10 days ago</span> </div>
             </footer>
-        </article>
+        </article> -->
 
     </main>
     <div id="scroll-button">
-        <span class="round_button" ><i class="fas fa-angle-double-up" style="margin-top:30%;"></i></span>
+        <span class="round_button" ><i class="fas fa-angle-double-up" style="margin-top:25%;"></i></span>
     </div>
-
 
   </body>
   <script>

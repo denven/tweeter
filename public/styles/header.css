@@ -7,22 +7,25 @@
  */
 
 header.header {
-    height: 400px;
+    /* height: 400px; */
     text-align: center;
     background-color: #D99822;
     color: white;
     font-family: 'Source Sans Pro', sans-serif;
-    vertical-align: middle;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5em;
 }
 
-div.avatar {
-    /* position: relative;
-    top: 120px; */
-    margin-top: 20px;
+
+/* avata size auto adjustable */
+img.auto-size {
+    width: 15vmax;  
+    height: 15vmax;    
 }
 
 div.username{
-    /* position: relative;
-    top: 120px; */
-    font-size: 200%;
+    font-size: 2em;
 }

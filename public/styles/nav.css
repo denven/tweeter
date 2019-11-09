@@ -12,10 +12,10 @@
 
 nav {
   position: fixed;
-  height: 120px;
   width: 100%;
   z-index: 1024;  
   padding: 1.5em;
+  top: 0;
 }
 
 div.left_title {
@@ -33,9 +33,6 @@ span.app_title {
 
 /* top-right corner nav container */
 div.right_title {
-    /* width: fit-content; 
-    height: fit-content; */
-    /* display: inline-block; */
     color: #FFFFF0;
     float: right;
 }
@@ -43,14 +40,12 @@ div.right_title {
 /* write a new tweeter */
 div.new_post {
     text-align: right;
-    /* height: fit-content;
-    width: fit-content; */
     font-family: 'Source Sans Pro', sans-serif;
 }
 
 div.toogle_composer {
     text-align: center; 
-    height: 50px;
+    overflow: hidden;
     position:relative;
     -webkit-animation: webmove 1.5s infinite;
 }
@@ -65,6 +60,6 @@ button.toogle_composer {
 }
 
 @-webkit-keyframes webmove{ 
-	from {top:25px;}
-	to {top: 0px;}
+	from {top:1em;}
+	to {top: 0em;}
 }

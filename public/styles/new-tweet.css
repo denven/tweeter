@@ -21,7 +21,7 @@ textarea.tweet-input {
     background-color: #f4f1ec;
 }
 
-/* TWEET BUTTON */
+/* "TWEET" BUTTON */
 input.button {
     float: left;
     font-weight: normal;
@@ -46,12 +46,13 @@ span.error-msg {
     font-size: bold;
     padding: 5px;
     margin-bottom: 20px;
+    text-align: center;
 }
 
-
+/* scroll to top button */
 span.round_button {
-  height: 2.5em;
-  width: 2.5em;
+  height: 2em;
+  width: 2em;
   color: white;  
   text-align: center;
   background-color: red;

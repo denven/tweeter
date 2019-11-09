@@ -26,6 +26,12 @@ body {
   font-family: 'Source Sans Pro', sans-serif
 }
 
+/*
+ * Below is for main container, it's consist of:
+ *   - A section element for the tweet composer
+ *   - A article element list of posted tweets
+ *     - Head, content, and footer
+ */
 main.container {
     text-align: center;
 }
@@ -42,7 +48,8 @@ article.tweets-container {
     margin-right: 5%;
 }
 
-textarea.tweet_content {
+/* The tweet article: Content */
+textarea.tweet_content{
     outline: none;
     border-bottom: 0.3% solid #000;
     border-top: 0px;
@@ -56,6 +63,8 @@ textarea.tweet_content {
 .author_avarta {
     float: left; 
     margin: 1.25em;
+    width: 5vw;  
+    height: 5vw;  
 }
 
 .author_name {
@@ -79,6 +88,13 @@ textarea.tweet_content {
     margin-bottom: 0.8em;
 }
 
+.friend_action {
+     float: right;
+     margin-right: 2em;
+     margin-bottom: 0.8em;
+     color: #4056A1;
+}
+
 /* Desktop styles */
 @media only screen and (min-width: 1024px) {
     body{
@@ -86,17 +102,19 @@ textarea.tweet_content {
     }
 
     nav { 
+        height: 120px;
         background-color: #4056A1;
     }
     
     .header {
+        height: 400px;
         width: 33%;
         float: left;
         margin-top: 175px;
         margin-left: 1%;
     }
 
-    .container {  /* main container */
+    .container { /* main container */
         float: right;
         width: 66%;
         margin-top: 170px;  
@@ -111,10 +129,12 @@ textarea.tweet_content {
     }
 
     nav { 
+        height: 120px;
         background-color: #D99822;
     }
 
     .header {
+        height: 250px;
         top: 120px;   
         position: relative;
     }
@@ -126,38 +146,47 @@ textarea.tweet_content {
 }
 
 /* Mobile styles */
-@media only screen and (min-width: 360x) and (max-width: 767px) {
+@media only screen and (min-width: 120px) and (max-width: 767px) {
     body{
         font-size:10px
     }
 
     nav { 
+        height: 60px;
         background-color: #D99822;
     }
 
     .header {
-        top: 120px;   
+        height: 160px;
+        top: 60px;   
         position: relative;
     }
 
     .container {  /* main container */
         width: 100%;
-        margin-top: 170px;  
+        margin-top: 100px;  
     }    
 }
 
+/* Mobile styles */
+@media only screen and (min-height: 120px) and (orientation: landscape) and (max-height: 450px) {
+    body{
+        font-size:10px
+    }
 
-/* 
-@media screen and (min-width:321px) and (max-width:375px){html{font-size:11px}}
-@media screen and (min-width:376px) and (max-width:414px){html{font-size:12px}}
-@media screen and (min-width:415px) and (max-width:639px){html{font-size:15px}}
-@media screen and (min-width:640px) and (max-width:719px){html{font-size:20px}}
-@media screen and (min-width:720px) and (max-width:749px){html{font-size:22.5px}}
-@media screen and (min-width:750px) and (max-width:799px){html{font-size:23.5px}}
-@media screen and (min-width:800px){} */
+    nav { 
+        height: 60px;
+        background-color:  #D99822;
+    }
 
+    .header {
+        height: 180px;
+        top: 60px;   
+        position: relative;
+    }
 
-/* Tablet styles */
-/*@media only screen and (min-width: 768px) {
-
-}*/
+    .container {  /* main container */
+        width: 100%;
+        margin-top: 100px;  
+    }    
+}

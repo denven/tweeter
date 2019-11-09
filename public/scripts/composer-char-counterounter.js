@@ -17,13 +17,13 @@ $(document).ready(() => {
   });
 
   /* hover feature */
-  $('article').on("mouseover", function() {
-    $('.at_name').show();
+  $('#main-container').on("mouseover", 'article', function() {
+    $(this).find('.at_name').show();
     $(this).css('box-shadow', '10px 10px 5px #888');
   });
 
-  $('article').on("mouseout", function() {
-    $('.at_name').hide();
+  $('#main-container').on("mouseout", 'article', function() {
+    $(this).find('.at_name').hide();
     $(this).css('box-shadow', '');
   });
   
