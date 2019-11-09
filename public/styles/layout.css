@@ -112,6 +112,7 @@ textarea.tweet_content{
         float: left;
         margin-top: 175px;
         margin-left: 1%;
+        padding: 1.5em;
     }
 
     .container { /* main container */
@@ -137,6 +138,7 @@ textarea.tweet_content{
         height: 250px;
         top: 120px;   
         position: relative;
+        padding-bottom: 1.5em;
     }
 
     .container {  /* main container */
@@ -160,6 +162,7 @@ textarea.tweet_content{
         height: 160px;
         top: 60px;   
         position: relative;
+        padding-bottom: 1.5em;
     }
 
     .container {  /* main container */
@@ -183,6 +186,7 @@ textarea.tweet_content{
         height: 180px;
         top: 60px;   
         position: relative;
+        padding-bottom: 1.5em;
     }
 
     .container {  /* main container */

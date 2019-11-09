@@ -133,8 +133,8 @@ const getHistoryTweets = function(tweets) {
 
 // put the latest tweet just below the tweet-composer section
 const getLatestTweet = function(tweets) {
-  let tweetArticle = createTweetElement2(tweets[tweets.length - 1]);
-  $('#tweet-composer').after(tweetArticle);
+  let $tweetArticle = createTweetElement2(tweets[tweets.length - 1]);
+  $('#tweet-composer').after($tweetArticle).hide().slideDown('fast');
 };
 
 

@@ -19,7 +19,7 @@ $(document).ready(() => {
   /* hover feature */
   $('#main-container').on("mouseover", 'article', function() {
     $(this).find('.at_name').show();
-    $(this).css('box-shadow', '10px 10px 5px #888');
+    $(this).css('box-shadow', '10px 10px 3px #888');
   });
 
   $('#main-container').on("mouseout", 'article', function() {
