@@ -212,6 +212,7 @@ $(document).ready(() => {
       }
       
       $submitNewTweet();   // validated user input wil be submitted
+      $('.counter').text("140");
     });
   };
 
