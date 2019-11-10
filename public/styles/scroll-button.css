@@ -1,0 +1,23 @@
+/* 
+ * A customized Button used to scroll page ontop, make it in round style.
+ */
+
+div.scroll-button {
+  position: fixed;         /* fixed at the bottom left of page */
+  right: 0.5%;
+  bottom: 2%;
+
+  height: 2em;
+  width: 2em;
+
+  color: white;           /* arrow color */
+  background-color: red;
+
+  border-radius: 50%;       /* round in shape */
+
+  /* make the double arrow in the round center */
+  display: flex;
+  justify-content:center;
+  flex-direction: column;
+  align-items: center;
+}

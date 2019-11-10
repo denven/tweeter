@@ -2,101 +2,89 @@
 <html lang="en">
   <head>
     <!-- Supoort different devices (be responsive) -->
-    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'/>
 
     <!-- Meta Information -->
     <title>Tweeter - Home Page</title>
 
-    <!-- Add fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,700,700i&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Bungee&display=swap" rel="stylesheet">
+    <!-- Import External FONTS -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,700,700i&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bungee&display=swap" >
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
 
-    <!-- External CSS -->
+    <!--Add External CSS -->
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
 
-    <!-- App CSS -->
+    <!-- App implemented CSS -->
     <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
     <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
     <link rel="stylesheet" href="/styles/header.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/new-tweet.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/article.css" type="text/css" />    
+    <link rel="stylesheet" href="/styles/new-tweet.css" type="text/css" />    
+    <link rel="stylesheet" href="/styles/scroll-button.css" type="text/css" />    
     
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
-    <!-- External JS -->
-    <script type="text/javascript" src="/vendor/jquery-2.2.3.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
-
-    <!-- App JS -->
-    <script type="text/javascript" src="/scripts/client.js"></script>
-    <script type="text/javascript" src="/scripts/composer-char-counterounter.js"></script>
   </head>
 
   <body>
-    <!-- Top nav bar (fixed) -->
+    <!-- Top nav bar (fixed on top) -->
     <nav>
-        <div>
-            <div class="left_title">
-                 <span class="app_title">TWEETER</span>
-            </div>
-           
-            <div class="right_title" id="new-button">
-                <div class="new_post"><strong>Write</strong> a new tweeter</div>
-                <div class="toogle_composer">
-                    <button class="toogle_composer" id="toogle-composer"><i class="fas fa-angle-double-down"></i>
-                    </button></div>                
-            </div>
+        <div class="left-title">TWEETER</div>           
+        <div class="right-button" id="new-tweet-btn">
+            <div class="btn-text"><strong>Write</strong> a new tweeter</div>
+            <div class="btn-animation"><i class="fas fa-angle-double-down" ></i></div>
         </div>
     </nav>
 
-    <!-- Add avatar and name in header  -->
-    <header class="header" id="header">
-        <div class="avatar">
-            <img class="auto-size" src="/images/profile-hex.png"> 
-        </div>
-        <div class="username">
-            <span style="font-weight: bold;">Amy</span><span> Marsell</span>
+    <!-- User profile header -->
+    <header id="user-profile">
+        <div class="avarta"> <img class="avarta" src="/images/profile-hex.png"> </div>
+        <br>
+        <div class="username"> 
+            <span class="firstname">Amy</span><span> Marsell</span>
         </div>
     </header>
 
     <!-- Page-specific (main) content here -->
-    <main class="container" id="main-container">
+    <main class="main-container">
 
-        <!-- compose new tweet container -->
-        <section class="new-tweet" id="tweet-composer">
+      <!-- container of "compose a new tweet" -->
+      <section class="new-tweet" id="tweet-composer" >
         <form id="tweet-form" action="/tweets/" method="POST" enctype="application/x-www-form-urlencoded">
             <textarea class="tweet-input" id="tweet-input" name="text" placeholder="What are you humming about?"></textarea>
-            <div>
-                <input class="button" id="post-new-tweet" type="submit" value="TWEET">
-                <span class="counter">140</span>
+            <div class="action-box">
+                <input class="post-button" id="post-new-tweet" type="submit" value="TWEET">
+                <span class="chars-counter" id="chars-counter">140</span>
             </div>            
         </form>
-        </section>
-     
-        <!-- Tweets' posts display container -->
-        <!-- <article class="tweets-container" id="tweets-container"> 
-            <header>
-                <div style="width: 50%;">
-                    <img class="author_avarta" src ="https://i.imgur.com/73hZDYK.png"> 
-                    <span class="author_name">Author</span>
-                </div>
-                <div><span class="at_name">@Somebody</span></div>
-            </header>
-            <div>
-                <textarea class="tweet_content" readonly required 
-                placeholder="Hodor. Hodor hodor, hodor. Hodor hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor; hodor hodor hodor. Hodor. Hodor hodor; hodor hodor - hodor, hodor, hodor hodor. Hodor, hodor. Hodor. Hodor, hodor hodor hodor; hodor hodor; hodor hodor hodor! Hodor hodor HODOR! Hodor hodor... Hodor hodor hodor..."></textarea>
-            </div>
-            <footer>               
-                <div> <span class="post_date" >10 days ago</span> </div>
-            </footer>
-        </article> -->
+      </section>
+
+      <!-- 
+          Articles(tweet posts) display list template structure example
+          They will be generated by jQuery according to tweets data from server side 
+          See function `creatTweetArticle()` in file articles-process.js
+      -->
+      <!--article class="tweets-container" id="tweets-container"> 
+        <header> <div> Author image and name </div> </header>
+        <div> <textarea >Tweet Contents</textarea></div>
+        <footer> Post Information, Friend feedbacks</footer>
+      </article-->
 
     </main>
-    <div id="scroll-button">
-        <span class="round_button" ><i class="fas fa-angle-double-up" style="margin-top:25%;"></i></span>
+
+    <!-- Go Up button in the right bottom -->
+    <div class="scroll-button" id="scroll-button">
+        <i class="fas fa-angle-double-up"></i>
     </div>
 
+    <!-- External JS -->
+    <script type="text/javascript" src="/vendor/jquery-2.2.3.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+
+    <!-- App implemented JS -->
+    <script type="text/javascript" src="/scripts/page-features.js"></script>
+    <script type="text/javascript" src="/scripts/articles-process.js"></script>
+    <script type="text/javascript" src="/scripts/new-tweet.js"></script>
+    <script type="text/javascript" src="/scripts/client-index.js"></script>
+
   </body>
-  <script>
-
-  </script>
-
 </html>

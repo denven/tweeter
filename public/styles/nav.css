@@ -1,65 +1,66 @@
 /* 
  * The appearance of the nav based on the following rules. The navbar should:\
  * 1. Be fixed to the top. 
- * 2. Be 120 pixels in height
+ * 2. Be 120 pixels in height. 
+ *      - Note: As the nav is fixed in height, the full-related elements' height will 
+ *              be designed according to this heigth, and "px" may be used as unit.
  * 3. Be full width of the viewport.
  * 4. Have a z-index that means the nav will always be stacked on top
  * 5. Have #4056A1 as its default background colour.
  * 6. Have #FFFFF as its default font colour
  * 7. The <span> within the <nav> has Bungee as it's default font-family
  * 8. The inner content should remain 1.5ems away from all edges
- */
+ *
+ **/
 
+/* Nagvigation Bar */
 nav {
   position: fixed;
+  /* height: 120px; */
   width: 100%;
+  color: #FFFFF0;
+  
   z-index: 1024;  
   padding: 1.5em;
-  top: 0;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;    /* left-rigth alignment of the two parts of navigation */
+  align-items: center;
+
 }
 
-div.left_title {
-    width: 30%;
-    float: left;
-}
-
-/* TWEETER title */
-span.app_title {
+/* Nav Left Part: the App title capital on top left coner */
+div.left-title {
     font-family: 'Bungee', cursive, sans-serif;
     font-size: 2.5em;
-    color: #FFFFF0;
     font-weight: bold;
 }
 
-/* top-right corner nav container */
-div.right_title {
-    color: #FFFFF0;
-    float: right;
+/* Nav Right Part: New tweet Button on top right corner  */
+
+/* button box: vertical-center alignment */
+div.right-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-/* write a new tweeter */
-div.new_post {
-    text-align: right;
+/* button capital: "write new tweet" */
+div.btn-capital {
     font-family: 'Source Sans Pro', sans-serif;
 }
 
-div.toogle_composer {
+/* button animation */
+div.btn-animation {
     text-align: center; 
-    overflow: hidden;
+    color: red;
     position:relative;
-    -webkit-animation: webmove 1.5s infinite;
+    -webkit-animation: btnmove 1.5s infinite;  /* move every 1.5 seconds */
 }
 
-button.toogle_composer {
-    background-color: transparent;
-    border:0px; 
-    color: yellow;
-    margin: 0px; 
-    border-color: transparent;
-    outline: none;
-}
-
-@-webkit-keyframes webmove{ 
-	from {top:1em;}
-	to {top: 0em;}
+/* move verticallly to generate animation */
+@-webkit-keyframes btnmove{ 
+	from {top:20px;}
+	to {top: 0px;}
 }
