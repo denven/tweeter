@@ -91,7 +91,7 @@ body {
     }
 
     nav {
-        height: 120px;
+        height: 80px;
         background-color: #D99822;
     }
 
@@ -99,12 +99,12 @@ body {
     header {
         height: 250px;
         width: 100%;
-        margin-top: 120px;      /* no space between header and nav */
+        margin-top: 80px;      /* no space between header and nav */
     }
 
     main {
         width: 90%;
-        margin-top: 25px;        /* space between header */
+        margin-top: 20px;        /* space between header */
     }
 }
 
