@@ -26,16 +26,13 @@ This repository is the starter code for the project: Students will fork and clon
 
 - Screenshots: 
 
-  * Link: [More Screenshots with large GIFs](./screentshots/)
+  * Link: [More Screenshots with large GIFs](https://github.com/denven/tweeter/tree/master/screenshots)
 
   * Exmaple Snapshots: 
 
-    - 1. Basic Features
-    [Basic Features](https://github.com/denven/tweeter/blob/master/screenshots/01-Basic%20features.gif#pic_center=960x500)
+    ![Basic Features](https://github.com/denven/tweeter/blob/master/screenshots/01-Basic%20features.gif#pic_center=960x500)
 
-    - 2. Resposive Features
-    [Responsive Features](https://github.com/denven/tweeter/blob/master/screenshots/02-Responsive%20Design%201.gif#pic_center=960x500)
+    ![Responsive Features](https://github.com/denven/tweeter/blob/master/screenshots/02-Responsive%20Design%201.gif#pic_center=960x500)
 
-    - 3. Resposive Features
-    [Responsive Features](https://github.com/denven/tweeter/blob/master/screenshots/04-Responsive%20Design%203.gif#pic_center=960x500)
+    ![Responsive Features](https://github.com/denven/tweeter/blob/master/screenshots/04-Responsive%20Design%203.gif#pic_center=960x500)
 
