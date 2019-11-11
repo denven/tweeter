@@ -28,6 +28,6 @@ This repository is the starter code for the project: Students will fork and clon
   * Link: [More Screenshots with large GIFs](./screentshots/)
 
   * Exmaple Snapshot: 
-  ![Basic Features](./01-Basic features.gif#pic_center=960x500)
-  ![Destop View](./screenshots/wide-screen-desktops.png) 
-  ![Landscape mode for small device](https://github.com/denven/tweeter/blob/master/screenshots/landscape%20mode%20of%20mobile%20device.png)
+   1.![Basic Features](https://github.com/denven/tweeter/blob/master/screenshots/01-Basic%20features.gif#pic_center=960x500)
+   2.![Destop View](./screenshots/wide-screen-desktops.png) 
+   3.![Landscape mode for small device](https://github.com/denven/tweeter/blob/master/screenshots/landscape%20mode%20of%20mobile%20device.png)
