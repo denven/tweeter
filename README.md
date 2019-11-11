@@ -25,9 +25,17 @@ This repository is the starter code for the project: Students will fork and clon
      - by orientation: landsacpe dectect and page adjustment (hide the header) for small screen
 
 - Screenshots: 
+
   * Link: [More Screenshots with large GIFs](./screentshots/)
 
-  * Exmaple Snapshot: 
-   1.![Basic Features](https://github.com/denven/tweeter/blob/master/screenshots/01-Basic%20features.gif#pic_center=960x500)
-   2.![Destop View](./screenshots/wide-screen-desktops.png) 
-   3.![Landscape mode for small device](https://github.com/denven/tweeter/blob/master/screenshots/landscape%20mode%20of%20mobile%20device.png)
+  * Exmaple Snapshots: 
+
+    - 1. Basic Features
+    [Basic Features](https://github.com/denven/tweeter/blob/master/screenshots/01-Basic%20features.gif#pic_center=960x500)
+
+    - 2. Resposive Features
+    [Responsive Features](https://github.com/denven/tweeter/blob/master/screenshots/02-Responsive%20Design%201.gif#pic_center=960x500)
+
+    - 3. Resposive Features
+    [Responsive Features](https://github.com/denven/tweeter/blob/master/screenshots/04-Responsive%20Design%203.gif#pic_center=960x500)
+
